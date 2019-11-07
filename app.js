@@ -8,8 +8,9 @@ require("dotenv").config();
 
 const dbConnect = require("./config");
 
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
+const index = require("./routes/index");
+const users = require("./routes/users");
+const auth = require("./routes/auth");
 
 const app = express();
 dbConnect();
@@ -25,8 +26,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/", index);
+app.use("/users", users);
+app.use("/auth", auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -9,7 +9,7 @@ module.exports = () => {
     mongoose.connect(
       DATABASE_URI,
       {
-        dbName: "myhiddenplace",
+        dbName: "lifeofmoney",
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,

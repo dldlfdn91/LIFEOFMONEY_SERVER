@@ -10,12 +10,11 @@ exports.facebookLogin = async (req, res, next) => {
         `https://graph.facebook.com/v5.0/me?fields=id,email,name,picture&access_token=${token}`
       )
       .then(result => {
-        const facebookId = result.data.id;
         const email = result.data.email;
         const username = result.data.name;
         const picture = result.data.picture.data.url;
 
-        User.find({ facebook_id: facebookId }, (err, users) => {
+        User.find({ email }, (err, users) => {
           user = users[0];
 
           if (err) {
@@ -24,10 +23,10 @@ exports.facebookLogin = async (req, res, next) => {
 
           if (!user) {
             const user = new User({
-              facebook_id: facebookId,
               email,
               username,
-              picture
+              picture,
+              recipients: []
             });
 
             user.save(err => {
@@ -36,9 +35,11 @@ exports.facebookLogin = async (req, res, next) => {
               } else {
                 res.status(200).send({
                   user: {
+                    id: user._id,
                     email,
                     username,
-                    picture
+                    picture,
+                    recipients: []
                   }
                 });
               }
@@ -46,9 +47,11 @@ exports.facebookLogin = async (req, res, next) => {
           } else {
             res.status(200).send({
               user: {
+                id: user._id,
                 email,
                 username,
-                picture
+                picture,
+                recipients: user.recipients
               }
             });
           }

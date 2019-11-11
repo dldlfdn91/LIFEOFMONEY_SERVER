@@ -1,12 +1,10 @@
 const mongoose = require("mongoose");
+const ObjectId = require("mongoose").Types.ObjectId;
 
 const userSchema = new mongoose.Schema({
-  facebook_id: {
-    type: String
-  },
   email: {
     type: String,
-    required: true,
+    required: true
   },
   username: {
     type: String,
@@ -14,7 +12,13 @@ const userSchema = new mongoose.Schema({
   },
   picture: {
     type: String
-  }
+  },
+  recipients: [
+    {
+      type: ObjectId,
+      ref: "Recipient"
+    }
+  ]
 });
 
 module.exports = mongoose.model("User", userSchema);

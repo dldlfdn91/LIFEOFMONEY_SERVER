@@ -7,19 +7,19 @@ const eventSchema = new mongoose.Schema({
     ref: "User",
     required: true
   },
-  recipient_id: [
-    {
-      type: String,
-      required: true
-    }
-  ],
-  sort: {
-    type: String,
+  recipient: {
+    type: ObjectId,
+    ref: "Recipient",
     required: true
+  },
+  eventName: {
+    type: String,
+  },
+  created_at: {
+    type: Date
   },
   money: {
     type: Number,
-    required: true
   }
 });
 

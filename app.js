@@ -9,26 +9,30 @@ require("dotenv").config();
 const dbConnect = require("./config");
 
 const index = require("./routes/index");
-const users = require("./routes/users");
 const auth = require("./routes/auth");
+const event = require("./routes/event");
+const recipients = require("./routes/recipients");
 
 const app = express();
 dbConnect();
 
 app.use(logger("dev"));
-app.use(cors({
-  origin: process.env.CLIENT_ADDRESS,
-  methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: process.env.CLIENT_ADDRESS,
+    methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
+    credentials: true
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", index);
-app.use("/users", users);
 app.use("/auth", auth);
+app.use("/event", event);
+app.use("/recipients", recipients);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

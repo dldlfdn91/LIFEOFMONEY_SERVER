@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const eventControllers = require("./controllers/event.controller");
 
-router.post("/", function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.post("/", eventControllers.createEvent);
+router.get("/:user_id/:recipient_id", eventControllers.getEvent);
 
 module.exports = router;

@@ -13,6 +13,7 @@ exports.facebookLogin = async (req, res, next) => {
         const email = result.data.email;
         const username = result.data.name;
         const picture = result.data.picture.data.url;
+        console.log(picture);
 
         User.find({ email }, (err, users) => {
           user = users[0];
@@ -25,8 +26,7 @@ exports.facebookLogin = async (req, res, next) => {
             const user = new User({
               email,
               username,
-              picture,
-              recipients: []
+              picture
             });
 
             user.save(err => {
@@ -38,8 +38,7 @@ exports.facebookLogin = async (req, res, next) => {
                     id: user._id,
                     email,
                     username,
-                    picture,
-                    recipients: []
+                    picture
                   }
                 });
               }
@@ -50,8 +49,7 @@ exports.facebookLogin = async (req, res, next) => {
                 id: user._id,
                 email,
                 username,
-                picture,
-                recipients: user.recipients
+                picture
               }
             });
           }

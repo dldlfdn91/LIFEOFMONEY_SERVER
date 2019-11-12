@@ -7,12 +7,12 @@ const eventSchema = new mongoose.Schema({
     ref: "User",
     required: true
   },
-  recipient: {
+  recipient_id: {
     type: ObjectId,
     ref: "Recipient",
     required: true
   },
-  eventName: {
+  eventType: {
     type: String,
   },
   created_at: {

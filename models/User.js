@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const ObjectId = require("mongoose").Types.ObjectId;
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -12,13 +11,7 @@ const userSchema = new mongoose.Schema({
   },
   picture: {
     type: String
-  },
-  recipients: [
-    {
-      type: ObjectId,
-      ref: "Recipient"
-    }
-  ]
+  }
 });
 
 module.exports = mongoose.model("User", userSchema);

@@ -13,7 +13,6 @@ exports.facebookLogin = async (req, res, next) => {
         const email = result.data.email;
         const username = result.data.name;
         const picture = result.data.picture.data.url;
-        console.log(picture);
 
         User.find({ email }, (err, users) => {
           user = users[0];

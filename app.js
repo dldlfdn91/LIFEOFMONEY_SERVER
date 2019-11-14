@@ -8,7 +8,6 @@ require("dotenv").config();
 
 const dbConnect = require("./config");
 
-const index = require("./routes/index");
 const auth = require("./routes/auth");
 const event = require("./routes/event");
 const recipients = require("./routes/recipients");
@@ -29,7 +28,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", index);
 app.use("/auth", auth);
 app.use("/event", event);
 app.use("/recipients", recipients);

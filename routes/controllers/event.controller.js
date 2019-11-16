@@ -16,6 +16,7 @@ exports.createEvent = async (req, res, next) => {
       user_id: userId,
       recipient_id: recipientId
     });
+
     const spendingEventLists = eventLists.filter(event => event.money < 0);
     const receivedEventLists = eventLists.filter(event => event.money > 0);
 

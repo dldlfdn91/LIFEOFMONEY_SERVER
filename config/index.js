@@ -4,7 +4,7 @@ const DATABASE_URI = process.env.DATABASE_URI;
 module.exports = () => {
   const connect = () => {
     if (process.env.NODE_ENV !== "production") {
-      // mongoose.set("debug", true);
+      mongoose.set("debug", true);
     }
     mongoose.connect(
       DATABASE_URI,

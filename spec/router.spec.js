@@ -75,8 +75,8 @@ describe("Test with mongoDB database", function() {
   describe("POST /recipients", function() {
     const recipientInfo = {
       userId: "5dc91136798debb907ea0713",
-      recipient: "허근행",
-      relation: "직장상사"
+      recipient: "테스트",
+      relation: "친구"
     };
 
     it("should create new recipient", function(done) {
